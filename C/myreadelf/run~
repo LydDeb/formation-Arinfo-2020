@@ -1,0 +1,17 @@
+#!/bin/bash
+make clean
+make DEBUG=0
+exec=myreadelf
+
+echo "----------------------"
+echo "| test: ./main  bomb |"
+echo "----------------------"
+./${exec} bomb
+echo ""
+
+echo "--------------------------------"
+echo "| test: ./main  hello_world.do |"
+echo "--------------------------------"
+./${exec} hello_world.do
+echo ""
+

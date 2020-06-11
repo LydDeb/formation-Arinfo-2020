@@ -1,0 +1,37 @@
+#!/bin/bash
+make clean
+make DEBUG=1
+exec=myreadelf
+
+echo "---------------------------"
+echo "| test: ./${exec} -h bomb |"
+echo "---------------------------"
+./${exec} -h bomb
+echo ""
+
+echo "------------------------------------------------"
+echo "| test: ./${exec} --file-header hello_world.do |"
+echo "------------------------------------------------"
+./${exec} --file-header hello_world.do
+echo ""
+
+
+echo "-----------------------------------------------------"
+echo "| test: ./${exec} --file-header hello_world.do bomb |"
+echo "-----------------------------------------------------"
+./${exec} --file-header hello_world.do bomb
+echo ""
+
+echo "-----------------------------------------------"
+echo "| test: ./${exec} -h -x .rodata hello_world.o |"
+echo "-----------------------------------------------"
+./${exec} -h -x .rodata hello_world.o
+echo ""
+
+echo "------------------------------------------------------------------------"
+echo "| test: ./${exec} --file-header --hex-dump=.rodata hello_world.do bomb |"
+echo "------------------------------------------------------------------------"
+./${exec} --file-header --hex-dump=.rodata hello_world.do bomb
+echo ""
+
+
